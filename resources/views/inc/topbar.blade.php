@@ -1,5 +1,5 @@
 <div class="top-bar">
-  <div class="row">
+  <div class="row menu-content">
     <div class="top-bar-left">
       <ul class="menu">
         <li class="menu-text">PhotoShow</li>
