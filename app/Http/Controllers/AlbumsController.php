@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Album;
 
 class AlbumsController extends Controller
 {
@@ -20,19 +21,31 @@ class AlbumsController extends Controller
            'cover_image' => 'image|max:1999'
        ]);
 
-        // gets filename with extenstion
-       $fileNameWithExt =  $request->file('cover_image')->getClientOriginalName();
+        // gets filename with extension
+        $fileNameWithExt =  $request->file('cover_image')->getClientOriginalName();
 
         // returns filename
-       $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 
         // get extension
-       $extension = $request->file('cover_image')->getClientOriginalExtension();
+        $extension = $request->file('cover_image')->getClientOriginalExtension();
 
-       $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+        $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
-      $path = $request->file('cover_image')->storeAs('public/album_covers', $fileNameToStore);
+        $path = $request->file('cover_image')->storeAs('public/album_covers', $fileNameToStore);
 
-      return $path;
+        // create album
+        $album = new Album;
+        
+        // fields from model
+        $album->name = $request->input('name');
+        $album->description = $request->input('description');
+        $album->cover_image = $fileNameToStore;
+
+        // save to DB
+        $album->save();
+
+        return redirect('albums')->with('success', 'Album Created');
+          
     }
 }
