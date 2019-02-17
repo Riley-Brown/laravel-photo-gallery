@@ -11,6 +11,6 @@ class Album extends Model
     
     public function photos() {
         // creates has many relationship with album to photos
-        return $this->hasMany('App/Photo');
+        return $this->hasMany('App\Photo');
     }
 }
