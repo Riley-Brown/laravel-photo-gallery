@@ -9,3 +9,19 @@
   margin: auto;
 }
 
+.album {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.album div img {
+  border: 1px solid lightgray;
+  padding: 3px;
+  max-height: 350px;
+}
+
+.album div h4 {
+  margin-top: 10px;
+}
+
