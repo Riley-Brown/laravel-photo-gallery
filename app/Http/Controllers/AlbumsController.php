@@ -31,6 +31,8 @@ class AlbumsController extends Controller
 
        $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
-       return $fileNameToStore;
+      $path = $request->file('cover_image')->storeAs('public/album_covers', $fileNameToStore);
+
+      return $path;
     }
 }
