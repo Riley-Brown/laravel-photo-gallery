@@ -46,7 +46,7 @@ class AlbumsController extends Controller
         // save to DB
         $album->save();
 
-        return redirect('albums')->with('success', 'Album Created');
+        return redirect('/albums')->with('success', 'Album Created');
           
     }
 
